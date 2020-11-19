@@ -1,0 +1,10 @@
+@startuml Basic Sample
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+System_Ext(external_system, "External System")
+System_Boundary(ledger, "The Amazing Ledger") {
+    Container(ledger_app, "RPC and Rest API", "Golang using clean architecture", "Allows systems to save and load events related to accounts")
+}
+
+Rel(external_system, ledger_app, "Save transactions, get balance and history about an account", "HTTPS")
+@enduml
