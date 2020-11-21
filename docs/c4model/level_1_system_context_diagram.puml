@@ -1,10 +1,22 @@
 @startuml Basic Sample
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
 
-System_Ext(external_system, "External System")
-System_Boundary(ledger, "The Amazing Ledger") {
+' LAYOUT_WITH_LEGEND()
+
+
+
+System(transactional_systems, "Transactional systems")
+System(report_systems, "Report systems")
+System_Ext(external_systems, "External systems")
+
+System_Boundary(ledger, "Ledger") {
     Container(ledger_app, "RPC and Rest API", "Golang using clean architecture", "Allows systems to save and load events related to accounts")
+    ' Container(message_bus, "Message Bus", "Kafka", "Transport for account events")
 }
 
-Rel(external_system, ledger_app, "Save transactions, get balance and history about an account", "HTTPS")
+' Rel_R(ledger_app, message_bus, "Sends account update events to")
+
+Rel(transactional_systems, ledger_app, "Save transactions, get balance and operations related to accounts", "HTTPS")
+Rel(report_systems, ledger_app, "Get summary and analytical data", "HTTPS")
+Rel(external_systems, ledger_app, "Get events related to accounts", "HTTPS")
 @enduml
