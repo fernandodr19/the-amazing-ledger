@@ -11,22 +11,19 @@ System_Boundary(ledger, "Ledger") {
     Container(ledger_pub_handler, "Ledger Publisher handler", "Golang exporting RPC", "Allows systems to reveice account events throw Message Bus")
     ContainerDb(query_database, "Query Database", "Postgres Database", "Reads events related to accounts")
     ContainerDb(command_database, "Command Database", "Postgres Database", "Stores transaction and operations related to accounts")
+    Container(report_api, "Report API", "Golang exporting Rest API", "Allows systems to get syntetic and analitical data")
+    ContainerDb(report_database, "Report Database", "Postgres Database", "Events related to accounts")
 }
 
 Container(message_bus, "Message Bus", "Kafka", "Transport for account events")
 
-Rel(ledger_pub_handler, message_bus, "Sends account update events to")
+Rel_Neighbor(ledger_pub_handler, message_bus, "Sends account update events to")
 
 Rel(ledger_command_api, command_database, "Write operations about the accounts")
 Rel(ledger_query_api, query_database, "Read operations related to the accounts")
 
 Rel(transactional_systems, ledger_command_api, "Save transactions with operations related to accounts", "HTTPS")
 Rel(transactional_systems, ledger_query_api, "Load balance and operations related to accounts", "HTTPS")
-
-System_Boundary(reports, "Report systems") {
-    Container(report_api, "Report API", "Golang exporting Rest API", "Allows systems to get syntetic and analitical data")
-    ContainerDb(report_database, "Report Database", "Postgres Database", "Events related to accounts")
-}
 
 Rel(report_api, report_database, "Read and Write events related to accounts")
 Rel_Back(report_api, message_bus, "Read events related to accounts")

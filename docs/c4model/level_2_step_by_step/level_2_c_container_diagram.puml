@@ -12,8 +12,8 @@ System(report_systems, "Report systems")
 System_Ext(external_systems, "External systems")
 
 System_Boundary(ledger, "Ledger") {
-    Container(ledger_command_api, "Command handler", "Golang exporting RPC and Rest APIs", "Allows systems to save transactions related to accounts")
-    Container(ledger_query_api, "Query handler", "Golang exporting RPC and Rest APIs", "Allows systems to get the balance and load the history of the accounts")
+    Container(ledger_command_api, "Ledger Command handler", "Golang exporting RPC and Rest APIs", "Allows systems to save transactions related to accounts")
+    Container(ledger_query_api, "Ledger Query handler", "Golang exporting RPC and Rest APIs", "Allows systems to get the balance and load the history of the accounts")
     ContainerDb(query_database, "Query Database", "Postgres Database", "Reads events related to accounts")
     ContainerDb(command_database, "Command Database", "Postgres Database", "Stores transaction and operations related to accounts")
 }
