@@ -4,6 +4,8 @@
 ' LAYOUT_LEFT_RIGHT
 ' LAYOUT_WITH_LEGEND()
 
+title Container diagram - Ledger system
+
 System(transactional_systems, "Transactional systems")
 System(report_systems, "Report systems")
 System_Ext(external_systems, "External systems")

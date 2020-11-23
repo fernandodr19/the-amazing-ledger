@@ -1,6 +1,7 @@
 @startuml Basic Sample
 !includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
 
+title Container diagram - Ledger system
 
 ' LAYOUT_LEFT_RIGHT
 

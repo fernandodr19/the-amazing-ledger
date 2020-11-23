@@ -3,6 +3,8 @@
 
 ' LAYOUT_WITH_LEGEND()
 
+title System context diagram - Ledger system
+
 System(transactional_systems, "Transactional systems")
 System(report_systems, "Report systems")
 System_Ext(external_systems, "External systems")
