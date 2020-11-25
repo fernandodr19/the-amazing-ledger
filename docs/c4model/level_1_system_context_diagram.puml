@@ -5,8 +5,8 @@
 
 title System context diagram - Ledger system
 
-System(transactional_systems, "Transactional systems")
-System(report_systems, "Report systems")
+System_Ext(transactional_systems, "Transactional systems")
+System_Ext(report_systems, "Report systems")
 System_Ext(external_systems, "External systems")
 
 System_Boundary(ledger, "Ledger") {
@@ -15,10 +15,10 @@ System_Boundary(ledger, "Ledger") {
 
 Container(message_bus, "Message Bus", "Kafka", "Transport for account events")
 
-Rel_Back(external_systems, message_bus, "Get events related to accounts", "HTTPS")
+Rel_Back(external_systems, message_bus, "Get events related to accounts", "RPC/HTTPS")
 
 Rel_R(ledger_api, message_bus, "Sends account update events to")
 
-Rel(transactional_systems, ledger_api, "Save transactions, get balance and operations related to accounts", "HTTPS")
-Rel(report_systems, ledger_api, "Get summary and analytical data", "HTTPS")
+Rel(transactional_systems, ledger_api, "Save transactions, get balance and operations related to accounts", "RPC/HTTPS")
+Rel(report_systems, ledger_api, "Get summary and analytical data", "RPC/HTTPS")
 @enduml
